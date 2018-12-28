@@ -106,6 +106,9 @@ export const getRouterData = (app) => {
     '/trace': {
       component: dynamicWrapper(app, ['trace'], () => import('../routes/Trace/Trace')),
     },
+    '/serviceReferenceMetric': {
+      component: dynamicWrapper(app, ['serviceReferenceMetric'], () => import('../routes/ServiceReferenceMetric/ServiceReferenceMetric')),
+    },
     '/monitor/alarm': {
       component: dynamicWrapper(app, ['alarm'], () => import('../routes/Alarm/Alarm')),
     },

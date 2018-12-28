@@ -45,6 +45,10 @@ const menuData = [{
   name: 'Trace',
   icon: 'exception',
   path: 'trace',
+}, {
+  name: 'ServiceReferenceMetric',
+  icon: 'file-text',
+  path: 'serviceReferenceMetric',
 }];
 
 function formatter(data, parentPath = '', parentAuthority) {
