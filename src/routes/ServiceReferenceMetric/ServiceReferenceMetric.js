@@ -67,6 +67,10 @@ export default class ServiceReferenceMetric extends PureComponent {
         });
     }
 
+    componentDidMount(){
+        this.handleSearch();
+    }
+
     handleBehindChange = (selected) => {
         this.setState({thisBehindOption: selected});
     };
