@@ -28,10 +28,10 @@ export default class ApplicationLitePanel extends PureComponent {
       <div>
         {appInfo.isAlarm ? <Avatar style={{ backgroundColor: '#F04864', marginBottom: 10 }} icon="bell" /> : null}
         <DescriptionList col={1} layout="vertical" >
-          <Description term="SLA">{appInfo.sla}%</Description>
-          <Description term="Calls Per Minute">{appInfo.cpm}</Description>
-          <Description term="Avg Response Time">{appInfo.avgResponseTime} ms</Description>
-          <Description term="Total Server">{appInfo.numOfServer}</Description>
+          <Description term="服务可用性">{appInfo.sla}%</Description>
+          <Description term="每分调用次数">{appInfo.cpm}</Description>
+          <Description term="平均响应时间">{appInfo.avgResponseTime} ms</Description>
+          <Description term="主机数量">{appInfo.numOfServer}</Description>
         </DescriptionList>
       </div>
     );
