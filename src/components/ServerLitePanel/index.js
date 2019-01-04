@@ -55,14 +55,14 @@ export default class ServerLitePanel extends PureComponent {
           <Col span={24}>
             <Card bordered={false} bodyStyle={{ padding: 5 }}>
               <DescriptionList col={1} gutter={0} size="small">
-                <Description term="Host">{serverInfo.host}</Description>
-                <Description term="OS">{serverInfo.osName}</Description>
+                <Description term="主机名">{serverInfo.host}</Description>
+                <Description term="操作系统">{serverInfo.osName}</Description>
               </DescriptionList>
             </Card>
           </Col>
           <Col span={24}>
             <ChartCard
-              title="Avg Throughput"
+              title="平均吞吐量"
               total={`${avgTimeSeries(getServerThroughputTrend.trendList)} cpm`}
               contentHeight={46}
               bordered={false}
@@ -76,7 +76,7 @@ export default class ServerLitePanel extends PureComponent {
           </Col>
           <Col span={24}>
             <ChartCard
-              title="Avg Response Time"
+              title="平均响应时间"
               total={`${avgTimeSeries(getServerResponseTimeTrend.trendList)} ms`}
               contentHeight={46}
               bordered={false}
@@ -92,7 +92,7 @@ export default class ServerLitePanel extends PureComponent {
             </ChartCard>
           </Col>
         </Row>
-        {serverInfo.key ? <a style={{ float: 'right' }} onClick={onMoreServer}> More Server Details<Icon type="ellipsis" /> </a> : null}
+        {serverInfo.key ? <a style={{ float: 'right' }} onClick={onMoreServer}> 更多服务器详细信息<Icon type="ellipsis" /> </a> : null}
       </div>
     );
   }

@@ -40,10 +40,10 @@ export default class Server extends PureComponent {
           <Col xs={24} sm={24} md={24} lg={6} xl={6} style={{ marginTop: 8 }}>
             <Card style={{ marginTop: 8 }} bordered={false}>
               <DescriptionList col={1} layout="vertical" >
-                <Description term="Host">{serverInfo.host}</Description>
+                <Description term="主机名">{serverInfo.host}</Description>
                 <Description term="IPv4">{serverInfo.ipv4 ? serverInfo.ipv4.join() : ''}</Description>
-                <Description term="Pid">{serverInfo.pid}</Description>
-                <Description term="OS">{serverInfo.osName}</Description>
+                <Description term="进程">{serverInfo.pid}</Description>
+                <Description term="操作系统">{serverInfo.osName}</Description>
               </DescriptionList>
             </Card>
           </Col>
@@ -51,7 +51,7 @@ export default class Server extends PureComponent {
             <Row gutter={8}>
               <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ marginTop: 8 }}>
                 <ChartCard
-                  title="Avg Throughput"
+                  title="平均吞吐量"
                   total={`${avgTimeSeries(getServerThroughputTrend.trendList)} cpm`}
                   contentHeight={46}
                 >
@@ -63,7 +63,7 @@ export default class Server extends PureComponent {
               </Col>
               <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ marginTop: 8 }}>
                 <ChartCard
-                  title="Avg Response Time"
+                  title="平均响应时间"
                   total={`${avgTimeSeries(getServerResponseTimeTrend.trendList)} ms`}
                   contentHeight={46}
                 >

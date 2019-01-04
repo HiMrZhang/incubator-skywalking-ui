@@ -98,7 +98,7 @@ export default class ServiceReferenceMetric extends PureComponent {
             <Form onSubmit={this.handleSearch} layout="vertical">
                 <Row>
                     <Col span={8}>
-                        <FormItem label={'Time Range'} {...formItemLayout}>
+                        <FormItem label={'时间范围'} {...formItemLayout}>
                             {getFieldDecorator('range-time-picker', {
                                 rules: [{
                                     required: true,
@@ -115,25 +115,25 @@ export default class ServiceReferenceMetric extends PureComponent {
                         </FormItem>
                     </Col>
                     <Col span={8}>
-                        <FormItem label="Order By" {...formItemLayout}>
+                        <FormItem label="排序" {...formItemLayout}>
                             {getFieldDecorator('queryOrder')(
                                 <Select placeholder="Time Bucket" style={{ width: '100%' }}>
-                                    <Option key="BY_TIME_BUCKET" value="BY_TIME_BUCKET">Time Bucket</Option>
-                                    <Option key="BY_TRANSACTION_AVERAGE_DURATION" value="BY_TRANSACTION_AVERAGE_DURATION">Transaction average duration</Option>
-                                    <Option key="BY_TRANSACTION_CALLS" value="BY_TRANSACTION_CALLS">Transaction Calls</Option>
-                                    <Option key="BY_TRANSACTION_ERROR_CALLS" value="BY_TRANSACTION_ERROR_CALLS">Transaction Error Calls</Option>
+                                    <Option key="BY_TIME_BUCKET" value="BY_TIME_BUCKET">时间段</Option>
+                                    <Option key="BY_TRANSACTION_AVERAGE_DURATION" value="BY_TRANSACTION_AVERAGE_DURATION">平均耗时</Option>
+                                    <Option key="BY_TRANSACTION_CALLS" value="BY_TRANSACTION_CALLS">次数</Option>
+                                    <Option key="BY_TRANSACTION_ERROR_CALLS" value="BY_TRANSACTION_ERROR_CALLS">失败次数</Option>
                                 </Select>
                             )}
                         </FormItem>
                     </Col>
                     <Col span={8}>
-                        <FormItem label="Front Application" {...formItemLayout}>
+                        <FormItem label="调用方" {...formItemLayout}>
                             {getFieldDecorator('frontApplicationId', {
                                 initialValue: this.state.thisFrontOption
                             })(
-                                <Select placeholder="All" style={{ width: '100%' }}
+                                <Select placeholder="所有应用" style={{ width: '100%' }}
                                         onChange ={this.handleFrontChange}>
-                                    <Option key="0" value="0">All</Option>
+                                    <Option key="0" value="0">所有应用</Option>
                                     {
                                         options.applicationId && options.applicationId.map((service) => {
                                             return (
@@ -147,13 +147,13 @@ export default class ServiceReferenceMetric extends PureComponent {
                         </FormItem>
                     </Col>
                     <Col span={8}>
-                        <FormItem label="Behind Application" {...formItemLayout}>
+                        <FormItem label="提供方" {...formItemLayout}>
                             {getFieldDecorator('behindApplicationId', {
                                 initialValue: this.state.thisBehindOption
                             })(
-                                <Select key="2" placeholder="All" style={{ width: '100%' }}
+                                <Select key="2" placeholder="所有应用" style={{ width: '100%' }}
                                         onChange={this.handleBehindChange.bind(this)}>
-                                    <Option key="0" value="0">All</Option>
+                                    <Option key="0" value="0">所有应用</Option>
                                     {
                                         options.applicationId && options.applicationId.map((service) => {
                                             return (
@@ -169,7 +169,7 @@ export default class ServiceReferenceMetric extends PureComponent {
                     <Col span={8}>
                         <Row>
                             <Col span={7}>
-                                duration range
+                                耗时范围
                             </Col>
                             <Col span={15}>
                                 <Row>
@@ -194,7 +194,7 @@ export default class ServiceReferenceMetric extends PureComponent {
                     </Col>
                     <Col span={7} style={{textAlign: 'right'}}>
                         <FormItem>
-                            <Button type="primary" htmlType="submit">Search</Button>
+                            <Button type="primary" htmlType="submit">搜索</Button>
                         </FormItem>
                     </Col>
                 </Row>
@@ -268,30 +268,30 @@ export default class ServiceReferenceMetric extends PureComponent {
         }, {
             key: 'serviceName',
             dataIndex: 'serviceName',
-            title: "service name",
+            title: "服务名称",
             render: (text, record) => (<span>{record.behindServiceInfo.name}</span>)
         }, {
             key: 'frontServiceInfo',
             dataIndex: 'frontServiceInfo',
-            title: "front application",
+            title: "调用方",
             render: (text, record) => (<span>{record.frontServiceInfo.applicationName}</span>)
         }, {
             key: 'behindServiceInfo',
             dataIndex: 'behindServiceInfo',
-            title: "behind application",
+            title: "提供方",
             render: (text, record) => (<span>{record.behindServiceInfo.applicationName}</span>)
         }, {
             key: 'calls',
             dataIndex: 'calls',
-            title: "calls"
+            title: "次数"
         }, {
             key: 'errorCalls',
             dataIndex: 'errorCalls',
-            title: "error calls"
+            title: "失败次数"
         }, {
             key: 'averageDuration',
             dataIndex: 'averageDuration',
-            title: "avg duration"
+            title: "平均耗时"
         }]
         return (
             <Table

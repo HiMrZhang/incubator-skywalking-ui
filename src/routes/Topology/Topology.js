@@ -157,7 +157,7 @@ export default class Topology extends PureComponent {
         <Row gutter={8}>
           <Col {...{ ...colResponsiveProps, xl: 18, lg: 16 }}>
             <ChartCard
-              title="Topology Map"
+              title="拓扑图"
               avatar={<Avatar icon="fork" style={{ color: '#1890ff', backgroundColor: '#ffffff' }} />}
               action={(
                 <Radio.Group value={layout} onChange={this.handleLayoutChange} size="normal">
@@ -189,11 +189,11 @@ export default class Topology extends PureComponent {
               </Card>
             )
             : (
-              <Card title="Overview" style={{ height: 672 }}>
+              <Card title="概观" style={{ height: 672 }}>
                 <Select
                   mode="tags"
                   style={{ width: '100%', marginBottom: 20 }}
-                  placeholder="Filter application"
+                  placeholder="过滤应用"
                   onChange={this.handleFilterApplication}
                   tokenSeparators={[',']}
                   value={appFilters}
@@ -202,7 +202,7 @@ export default class Topology extends PureComponent {
                     .map(_ => <Option key={_.name}>{_.name}</Option>)}
                 </Select>
                 <DescriptionList layout="vertical" >
-                  <Description term="Total">{topologData.nodes.length}</Description>
+                  <Description term="总数">{topologData.nodes.length}</Description>
                   {this.renderNodeType(topologData)}
                 </DescriptionList>
               </Card>

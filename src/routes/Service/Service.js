@@ -153,7 +153,7 @@ export default class Service extends PureComponent {
         <Row gutter={8}>
           <Col xs={24} sm={24} md={24} lg={8} xl={8} style={{ marginTop: 8 }}>
             <ChartCard
-              title="Avg Throughput"
+              title="平均吞吐量"
               total={`${avgTimeSeries(getServiceThroughputTrend.trendList)} cpm`}
               contentHeight={46}
             >
@@ -165,7 +165,7 @@ export default class Service extends PureComponent {
           </Col>
           <Col xs={24} sm={24} md={24} lg={8} xl={8} style={{ marginTop: 8 }}>
             <ChartCard
-              title="Avg Response Time"
+              title="平均响应时间"
               total={`${avgTimeSeries(getServiceResponseTimeTrend.trendList)} ms`}
               contentHeight={46}
             >
@@ -176,7 +176,7 @@ export default class Service extends PureComponent {
           </Col>
           <Col xs={24} sm={24} md={24} lg={8} xl={8} style={{ marginTop: 8 }}>
             <ChartCard
-              title="Avg SLA"
+              title="平均服务可用性"
               total={`${(avgTimeSeries(getServiceSLATrend.trendList) / 100).toFixed(2)} %`}
             >
               <MiniBar
@@ -191,7 +191,7 @@ export default class Service extends PureComponent {
         <Row gutter={8}>
           <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ marginTop: 8 }}>
             <ChartCard
-              title="Top 20 Slow Traces"
+              title="Top20慢跟踪"
             >
               <TraceList
                 data={queryBasicTraces.traces}
@@ -224,7 +224,7 @@ export default class Service extends PureComponent {
       <Row gutter={8}>
         <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ marginTop: 8 }}>
           <ChartCard
-            title="Dependency Map"
+            title="依赖图"
             contentHeight={200}
           >
             <Sankey
@@ -252,7 +252,7 @@ export default class Service extends PureComponent {
           <Row type="flex" justify="start">
             <Col style={{ marginBottom: 24 }}>
               <Button ghost type="primary" size="small" onClick={() => { this.handleGoBack(); }}>
-                <Icon type="left" />Go back
+                <Icon type="left" />返回
               </Button>
             </Col>
           </Row>

@@ -136,7 +136,7 @@ export default class Application extends PureComponent {
           <Row gutter={0}>
             <Col {...{ ...middleColResponsiveProps, xl: 16, lg: 12, md: 24 }}>
               <Card
-                title="Application Map"
+                title="应用图"
                 bordered={false}
                 bodyStyle={{ padding: 0 }}
               >
@@ -169,7 +169,7 @@ export default class Application extends PureComponent {
           <Row gutter={8}>
             <Col {...{ ...middleColResponsiveProps, xl: 12, lg: 12, md: 24 }}>
               <Card
-                title="Running Server"
+                title="运行服务器"
                 bordered={false}
                 bodyStyle={{ padding: 5 }}
               >
@@ -180,12 +180,12 @@ export default class Application extends PureComponent {
                   renderBadge={_ => ([
                     {
                       key: 'host',
-                      label: 'Host',
+                      label: '主机名',
                       value: _.host,
                     },
                     {
                       key: 'os',
-                      label: 'OS',
+                      label: '操作系统',
                       value: _.osName,
                     },
                   ])}
@@ -195,7 +195,7 @@ export default class Application extends PureComponent {
             </Col>
             <Col {...{ ...middleColResponsiveProps, xl: 12, lg: 12, md: 24 }}>
               <Card
-                title="Slow Service"
+                title="慢服务"
                 bordered={false}
                 bodyStyle={{ padding: '0px 10px' }}
               >
