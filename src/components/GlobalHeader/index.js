@@ -82,7 +82,7 @@ export default class GlobalHeader extends PureComponent {
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item key="logout">
-          <Icon type="logout" />Logout
+          <Icon type="logout" />退出
         </Menu.Item>
       </Menu>
     );
@@ -110,28 +110,30 @@ export default class GlobalHeader extends PureComponent {
               className={styles.action}
               count={applicationAlarmList.total + serverAlarmList.total}
               onItemClick={(item, tabProps) => {
-                redirect({ pathname: '/monitor/alarm', state: { type: tabProps.title } });
+                redirect({ pathname: '/monitor/alarm', state: { type: tabProps.value } });
               }}
-              onClear={(tabTitle) => {
-                redirect({ pathname: '/monitor/alarm', state: { type: tabTitle } });
+              onClear={(tabValue) => {
+                redirect({ pathname: '/monitor/alarm', state: { type: tabValue } });
               }}
               loading={fetching}
               popupAlign={{ offset: [20, -16] }}
               locale={{
-                emptyText: 'No alert',
-                clear: 'More ',
+                emptyText: '无报警',
+                clear: '更多 ',
               }}
             >
               <NoticeIcon.Tab
                 list={applications}
-                title="Application"
-                emptyText="No alarm"
+                title="应用"
+                value="Application"
+                emptyText="无报警"
                 emptyImage="alarm-backgroud.png"
               />
               <NoticeIcon.Tab
                 list={servers}
-                title="Server"
-                emptyText="No alarm"
+                title="主机"
+                value="Server"
+                emptyText="无报警"
                 emptyImage="alarm-backgroud.png"
               />
             </NoticeIcon>

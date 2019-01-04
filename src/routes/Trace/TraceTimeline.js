@@ -74,11 +74,11 @@ export default class TraceTimeLine extends PureComponent {
         title={
           this.renderTitle([
             {
-              name: 'Start Time',
+              name: '开始时间',
               count: this.getStartTime(spans),
             },
             {
-              name: 'Total Duration',
+              name: '总耗时',
               count: this.getTotalDuration(spans),
             },
             {

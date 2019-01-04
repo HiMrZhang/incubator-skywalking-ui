@@ -40,7 +40,7 @@ export default class Trace extends PureComponent {
           <Row type="flex" justify="start">
             <Col style={{ marginBottom: 24 }}>
               <Button ghost type="primary" size="small" onClick={() => { this.handleGoBack(); }}>
-                <Icon type="left" />Go back
+                <Icon type="left" />返回
               </Button>
             </Col>
           </Row>
