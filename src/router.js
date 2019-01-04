@@ -19,7 +19,7 @@
 import React from 'react';
 import { routerRedux, Switch } from 'dva/router';
 import { LocaleProvider, Spin } from 'antd';
-import enUS from 'antd/lib/locale-provider/en_US';
+import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import dynamic from 'dva/dynamic';
 import { getRouterData } from './common/router';
 import Authorized from './utils/Authorized';
@@ -36,7 +36,7 @@ function RouterConfig({ history, app }) {
   const UserLayout = routerData['/user'].component;
   const BasicLayout = routerData['/'].component;
   return (
-    <LocaleProvider locale={enUS}>
+    <LocaleProvider locale={zh_CN}>
       <ConnectedRouter history={history}>
         <Switch>
           <AuthorizedRoute
