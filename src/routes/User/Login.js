@@ -56,11 +56,11 @@ export default class LoginPage extends Component {
           {
             login.status === 'error' &&
             !login.submitting &&
-            this.renderMessage('Invalid user or password')
+            this.renderMessage('无效的用户名或密码')
           }
-          <UserName name="userName" placeholder="User Name" />
-          <Password name="password" placeholder="Password" />
-          <Submit loading={submitting}>Login</Submit>
+          <UserName name="userName" placeholder="用户名" />
+          <Password name="password" placeholder="密码" />
+          <Submit loading={submitting}>登陆</Submit>
         </Login>
       </div>
     );

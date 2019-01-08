@@ -224,7 +224,7 @@ export default class Application extends PureComponent {
           <Col span={showServer ? 24 : 0}>
             <Breadcrumb>
               <Breadcrumb.Item>
-                Application
+                应用
               </Breadcrumb.Item>
               <Breadcrumb.Item>
                 <a onClick={this.handleGoApplication}>{variables.labels.applicationId}</a>

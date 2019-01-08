@@ -297,6 +297,7 @@ export default class ServiceReferenceMetric extends PureComponent {
             <Table
                 columns={columns}
                 dataSource={data}
+                style={{marginTop: 15}}
                 rowKey={(record) => record.id}
                 pagination={false}
             />
@@ -347,7 +348,7 @@ export default class ServiceReferenceMetric extends PureComponent {
         const {serviceReferenceMetric: {variables: {values}, data: {queryServiceReferenceMetricBrief}}, loading} = this.props;
         return (
             <div>
-                <Card bordered={false} style={{marginBottom: 10}} bodyStyle={{paddingBottom: 0}}>
+                <Card bordered={false}>
                     <div className={styles.tableList}>
                         <Row>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24}>
@@ -355,9 +356,8 @@ export default class ServiceReferenceMetric extends PureComponent {
                             </Col>
                         </Row>
                     </div>
-                </Card>
-                <Card bordered={false}>
                     <div className={styles.tableList}>
+                        {this.renderPage(values, queryServiceReferenceMetricBrief.total)}
                         {this.renderTable(queryServiceReferenceMetricBrief.serviceReferenceMetrics)}
                         {this.renderPage(values, queryServiceReferenceMetricBrief.total)}
                     </div>
