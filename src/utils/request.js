@@ -20,6 +20,8 @@ import fetch from 'dva/fetch';
 import { notification } from 'antd';
 import { routerRedux } from 'dva/router';
 import store from '../index';
+import {getCurrentLoginUser} from './authority';
+import {setAuthority} from './authority';
 
 const codeMessage = {
   404: 'No resource',
@@ -27,7 +29,7 @@ const codeMessage = {
 };
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
-    return response;
+      return response;
   }
   const errortext = codeMessage[response.status] || response.statusText;
   notification.error({
@@ -57,6 +59,7 @@ export default function request(url, options) {
       Accept: 'application/json',
       'Content-Type': 'application/json; charset=utf-8',
       ...newOptions.headers,
+      'auth-token': getCurrentLoginUser().authToken,
     };
     newOptions.body = JSON.stringify(newOptions.body);
   }
@@ -84,15 +87,23 @@ export default function request(url, options) {
       const { dispatch } = store;
       const status = e.name;
       if (status === 403) {
-        dispatch(routerRedux.push('/exception/403'));
+        // dispatch(routerRedux.push('/exception/403'));
+          window.location.href = `${window.specialOrigin}/error-403.html`;
         return;
       }
       if (status <= 504 && status >= 500) {
-        dispatch(routerRedux.push('/exception/500'));
+          // dispatch(routerRedux.push('/exception/500'));
+          window.location.href = `${window.specialOrigin}/error-500.html`;
         return;
       }
       if (status >= 404 && status < 422) {
-        dispatch(routerRedux.push('/exception/404'));
+        // dispatch(routerRedux.push('/exception/404'));
+          window.location.href = `${window.specialOrigin}/error-404.html`;
+          return
+      }
+      if(status === 401){
+          setAuthority('');
+          window.location.href = `${window.specialOrigin}/error-401.html`;
       }
     });
 }

@@ -27,6 +27,7 @@ import createLoading from 'dva-loading';
 import 'moment/locale/zh-cn';
 
 import 'ant-design-pro/dist/ant-design-pro.css';
+import {setCurrentLoginUser, setAuthority} from './utils/authority';
 
 import './index.less';
 
@@ -44,8 +45,28 @@ app.model(require('./models/global').default);
 // 4. Router
 app.router(require('./router').default);
 
+
+if (window.addEventListener) {
+  const n = new Promise((resolve, reject) => {
+    window.addEventListener('message', (e) => {
+      if (e.source != window.parent) return;
+      const {data} = e;
+      if (data && typeof data == 'string') {
+        window.specialOrigin = e.origin;
+        let dataObj = JSON.parse(data);
+        if (dataObj && dataObj.authToken) {
+          setAuthority(dataObj.name);
+          setCurrentLoginUser(dataObj);
+          app.start('#root');
+        }
+      }
+    });
+  })
+} else {
+  app.start('#root');
+}
 // 5. Start
-app.start('#root');
+
 
 
 export default app._store;  // eslint-disable-line

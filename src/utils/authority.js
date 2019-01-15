@@ -24,3 +24,12 @@ export function getAuthority() {
 export function setAuthority(authority) {
   return localStorage.setItem('skywalking-authority', authority);
 }
+
+export function setCurrentLoginUser(user) {
+  window.localStorage.setItem('currentLoginUser', JSON.stringify(user));
+}
+
+export function getCurrentLoginUser() {
+  const currentLoginUser = window.localStorage.getItem('currentLoginUser');
+  return currentLoginUser ? JSON.parse(currentLoginUser) : null;
+}
