@@ -22,6 +22,7 @@ import { routerRedux } from 'dva/router';
 import store from '../index';
 import {getCurrentLoginUser} from './authority';
 import {setAuthority} from './authority';
+import {getParentOrigin} from './utils';
 
 const codeMessage = {
   404: 'No resource',
@@ -86,24 +87,22 @@ export default function request(url, options) {
     .catch((e) => {
       const { dispatch } = store;
       const status = e.name;
+      const parentOrigin = getParentOrigin();
       if (status === 403) {
-        // dispatch(routerRedux.push('/exception/403'));
-          window.location.href = `${window.specialOrigin}/error-403.html`;
+          window.location.href = `${parentOrigin}/error-403.html`;
         return;
       }
       if (status <= 504 && status >= 500) {
-          // dispatch(routerRedux.push('/exception/500'));
-          window.location.href = `${window.specialOrigin}/error-500.html`;
+          window.location.href = `${parentOrigin}/error-500.html`;
         return;
       }
       if (status >= 404 && status < 422) {
-        // dispatch(routerRedux.push('/exception/404'));
-          window.location.href = `${window.specialOrigin}/error-404.html`;
+          window.location.href = `${parentOrigin}/error-404.html`;
           return
       }
       if(status === 401){
           setAuthority('');
-          window.location.href = `${window.specialOrigin}/error-401.html`;
+          window.location.href = `${parentOrigin}/error-401.html`;
       }
     });
 }

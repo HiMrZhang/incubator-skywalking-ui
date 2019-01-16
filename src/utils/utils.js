@@ -121,3 +121,16 @@ export function redirect(history, pathname, param) {
   }
   history.push({ pathname, state: param });
 }
+
+export function getParentOrigin() {
+    var arr = (location.hash || '').split('?')[1].split('&')
+    var params = {}
+    for (var i = 0; i < arr.length; i++) {
+        var data = arr[i].split('=')
+        if (data.length === 2) {
+            params[data[0]] = data[1]
+        }
+    }
+    const {parentOrigin} = params;
+    return parentOrigin
+}
