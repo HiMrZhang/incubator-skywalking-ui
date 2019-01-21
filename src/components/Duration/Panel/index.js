@@ -182,8 +182,8 @@ class DurationPanel extends PureComponent {
     };
     const { getFieldDecorator } = form;
     const content = (
-      <Row type="flex" justify="end">
-        <Col xs={24} sm={24} md={24} lg={15} xl={14}>
+      <Row type="flex" justify="start">
+        <Col xs={24} sm={24} md={24} lg={15} xl={10}>
           <Form
             onSubmit={this.handleSubmit}
             hideRequiredMark

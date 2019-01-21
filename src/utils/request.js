@@ -85,24 +85,20 @@ export default function request(url, options) {
       return json;
     })
     .catch((e) => {
-      const { dispatch } = store;
       const status = e.name;
       const parentOrigin = getParentOrigin();
       if (status === 403) {
-          window.location.href = `${parentOrigin}/error-403.html`;
+        window.location.href = `${parentOrigin}/error-403.html`;
         return;
       }
       if (status <= 504 && status >= 500) {
-          window.location.href = `${parentOrigin}/error-500.html`;
+        window.location.href = `${parentOrigin}/error-500.html`;
         return;
       }
-      if (status >= 404 && status < 422) {
-          window.location.href = `${parentOrigin}/error-404.html`;
-          return
-      }
       if(status === 401){
-          setAuthority('');
-          window.location.href = `${parentOrigin}/error-401.html`;
+        setAuthority('');
+        window.location.href = `${parentOrigin}/error-401.html`;
+        return;
       }
     });
 }

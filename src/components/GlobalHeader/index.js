@@ -88,15 +88,6 @@ export default class GlobalHeader extends PureComponent {
     );
     return (
       <Header className={styles.header}>
-        <Link to="/" className={styles.logo} key="logo">
-          <img src={logo} alt="logo" width="50" />
-        </Link>
-        <Divider type="vertical" key="line" />
-        <Icon
-          className={styles.trigger}
-          type={collapsed ? 'menu-unfold' : 'menu-fold'}
-          onClick={this.toggle}
-        />
         { isMonitor ? (
           <div className={styles.right}>
             <DurationIcon
@@ -137,11 +128,6 @@ export default class GlobalHeader extends PureComponent {
                 emptyImage="alarm-backgroud.png"
               />
             </NoticeIcon>
-            <Dropdown overlay={menu}>
-              <span className={`${styles.action} ${styles.account}`}>
-                <Avatar size="small" className={styles.avatar} icon="user" />
-              </span>
-            </Dropdown>
           </div>
         ) : null}
       </Header>
