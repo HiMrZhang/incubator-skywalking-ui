@@ -18,10 +18,14 @@
 @import "~antd/lib/style/themes/default.less";
 
 .header {
-  padding: 0 12px 0 0;
+  padding: 0 17px 0 17px;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-  position: relative;
+  box-shadow: 0 5px 10px;
+  position: fixed;
+  z-index: 10000;
+  border-radius: 20px;
+  top: 10px;
+  right: 10px;
 }
 
 :global {
@@ -128,3 +132,9 @@ i.trigger {
     }
   }
 }
+
+.ant-popover{
+  z-index: 10000;
+  top: 58px;
+}
+

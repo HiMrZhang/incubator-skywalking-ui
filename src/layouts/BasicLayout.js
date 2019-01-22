@@ -202,23 +202,21 @@ class BasicLayout extends React.PureComponent {
           onCollapse={this.handleMenuCollapse}
         />
         <Layout>
-          {
-            // <GlobalHeader
-            //   logo={logo}
-            //   fetching={fetching}
-            //   notices={notices}
-            //   collapsed={collapsed}
-            //   selectedDuration={dSelected}
-            //   isMonitor={isMonitor}
-            //   onNoticeClear={this.handleNoticeClear}
-            //   onCollapse={this.handleMenuCollapse}
-            //   onMenuClick={this.handleMenuClick}
-            //   onNoticeVisibleChange={this.handleNoticeVisibleChange}
-            //   onDurationToggle={this.handleDurationToggle}
-            //   onDurationReload={this.handleDurationReload}
-            //   onRedirect={this.handleRedirect}
-            // />
-          }
+            <GlobalHeader
+              logo={logo}
+              fetching={fetching}
+              notices={notices}
+              collapsed={collapsed}
+              selectedDuration={dSelected}
+              isMonitor={isMonitor}
+              onNoticeClear={this.handleNoticeClear}
+              onCollapse={this.handleMenuCollapse}
+              onMenuClick={this.handleMenuClick}
+              onNoticeVisibleChange={this.handleNoticeVisibleChange}
+              onDurationToggle={this.handleDurationToggle}
+              onDurationReload={this.handleDurationReload}
+              onRedirect={this.handleRedirect}
+            />
           {isMonitor ? (
             <DurationPanel
               selected={dSelected}
