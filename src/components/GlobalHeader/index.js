@@ -87,50 +87,52 @@ export default class GlobalHeader extends PureComponent {
       </Menu>
     );
     return (
-      <Header className={styles.header}>
+      <div>
         { isMonitor ? (
-          <div className={styles.right}>
-            <DurationIcon
-              loading={fetching}
-              className={styles.action}
-              selectedDuration={selectedDuration}
-              onToggle={onDurationToggle}
-              onReload={onDurationReload}
-            />
-            <NoticeIcon
-              className={styles.action}
-              count={applicationAlarmList.total + serverAlarmList.total}
-              onItemClick={(item, tabProps) => {
-                redirect({ pathname: '/monitor/alarm', state: { type: tabProps.value } });
-              }}
-              onClear={(tabValue) => {
-                redirect({ pathname: '/monitor/alarm', state: { type: tabValue } });
-              }}
-              loading={fetching}
-              popupAlign={{ offset: [20, -16] }}
-              locale={{
-                emptyText: '无报警',
-                clear: '更多 ',
-              }}
-            >
-              <NoticeIcon.Tab
-                list={applications}
-                title="应用"
-                value="Application"
-                emptyText="无报警"
-                emptyImage="alarm-backgroud.png"
-              />
-              <NoticeIcon.Tab
-                list={servers}
-                title="主机"
-                value="Server"
-                emptyText="无报警"
-                emptyImage="alarm-backgroud.png"
-              />
-            </NoticeIcon>
-          </div>
+            <Header className={styles.header}>
+              <div className={styles.right}>
+                <DurationIcon
+                  loading={fetching}
+                  className={styles.action}
+                  selectedDuration={selectedDuration}
+                  onToggle={onDurationToggle}
+                  onReload={onDurationReload}
+                />
+                <NoticeIcon
+                  className={styles.action}
+                  count={applicationAlarmList.total + serverAlarmList.total}
+                  onItemClick={(item, tabProps) => {
+                    redirect({ pathname: '/monitor/alarm', state: { type: tabProps.value } });
+                  }}
+                  onClear={(tabValue) => {
+                    redirect({ pathname: '/monitor/alarm', state: { type: tabValue } });
+                  }}
+                  loading={fetching}
+                  popupAlign={{ offset: [20, -16] }}
+                  locale={{
+                    emptyText: '无报警',
+                    clear: '更多 ',
+                  }}
+                >
+                  <NoticeIcon.Tab
+                    list={applications}
+                    title="应用"
+                    value="Application"
+                    emptyText="无报警"
+                    emptyImage="alarm-backgroud.png"
+                  />
+                  <NoticeIcon.Tab
+                    list={servers}
+                    title="主机"
+                    value="Server"
+                    emptyText="无报警"
+                    emptyImage="alarm-backgroud.png"
+                  />
+                </NoticeIcon>
+              </div>
+            </Header>
         ) : null}
-      </Header>
+      </div>
     );
   }
 }

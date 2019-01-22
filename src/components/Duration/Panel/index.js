@@ -130,29 +130,67 @@ class DurationPanel extends PureComponent {
   }
   componentDidMount() {
     const { onSelected } = this.props;
-    onSelected(this.shortcuts[0]);
+      const label = localStorage.getItem('selectedLabel');
+      const timesstep = localStorage.getItem('timesstep') ? JSON.parse(localStorage.getItem('timesstep')) : undefined;
+      if(label){
+          let labelIndex = 0, labelType = 'shortcuts';
+          this.shortcuts.map((item,k)=>{
+              if(item.label.replace(/"/g, '') == label.replace(/"/g, '')){
+                  labelIndex = k;
+              }
+          });
+          this.shortcutsDays.map((item,k)=>{
+              if(item.label.replace(/"/g, '') == label.replace(/"/g, '')){
+                  labelIndex = k;
+                  labelType = 'shortcutsDays';
+              }
+          });
+          if(label){
+              if(labelType === 'shortcuts'){
+                  onSelected(this.shortcuts[labelIndex]);
+              } else {
+                  onSelected(this.shortcutsDays[labelIndex]);
+              }
+          } else {
+              onSelected(this.shortcuts[0]);
+          }
+      }
+      if(timesstep){
+          const selectedTime = {};
+          const dateFormat = 'YYYY/MM/DD';
+          if(timesstep){
+              selectedTime.from = () => moment(timesstep.beginTime, dateFormat);
+              selectedTime.to = () => moment(timesstep.endTime, dateFormat);
+              selectedTime.step = timesstep.step;
+              this.select({...selectedTime});
+          }
+      }
   }
   disabledDate = (current) => {
     return current && current.valueOf() >= Date.now();
   }
   handleSubmit = (e) => {
     e.preventDefault();
-
     const { form } = this.props;
-
     form.validateFields((err, fieldsValue) => {
       if (err) return;
       const selectedTime = {};
-      for (const key of Object.keys(fieldsValue)) {
+        let beginTime = '', endTime = '', step = '';
+        for (const key of Object.keys(fieldsValue)) {
         if (fieldsValue[key]) {
           if (key === 'range-time-picker') {
+            beginTime =fieldsValue[key][0].format('YYYY/MM/DD');
+            endTime =fieldsValue[key][1].format('YYYY/MM/DD');
             selectedTime.from = () => fieldsValue[key][0];
             selectedTime.to = () => fieldsValue[key][1];
           } else {
+            step = fieldsValue[key];
             selectedTime[key] = fieldsValue[key];
           }
         }
       }
+      const timesstep = {beginTime, endTime, step};
+      localStorage.setItem('timesstep', JSON.stringify(timesstep));
       if (selectedTime.from && selectedTime.to) {
         this.select({ ...selectedTime, label: null });
       } else {
@@ -160,9 +198,12 @@ class DurationPanel extends PureComponent {
       }
     });
   }
-  select = (newSelectedTime) => {
+  select = (newSelectedTime, type=0) => {
     const { onSelected, selected } = this.props;
     onSelected({ ...selected, ...newSelectedTime });
+    if(type ===2){
+        localStorage.setItem('timesstep', null);
+    }
   }
   render() {
     const { collapsed, form } = this.props;
@@ -180,6 +221,8 @@ class DurationPanel extends PureComponent {
         md: { span: 10 },
       },
     };
+    const timesstep = JSON.parse(localStorage.getItem('timesstep'));
+    const dateFormat = 'YYYY/MM/DD';
     const { getFieldDecorator } = form;
     const content = (
       <Row type="flex" justify="start">
@@ -192,7 +235,9 @@ class DurationPanel extends PureComponent {
               {...formItemLayout}
               label="时间范围"
             >
-              {getFieldDecorator('range-time-picker')(
+              {getFieldDecorator('range-time-picker',{
+                  initialValue: timesstep ? [moment(timesstep.beginTime, dateFormat), moment(timesstep.endTime, dateFormat)] : undefined
+              })(
                 <RangePicker showTime disabledDate={this.disabledDate} format="YYYY-MM-DD HH:mm" />
               )}
             </FormItem>
@@ -226,7 +271,7 @@ class DurationPanel extends PureComponent {
           <ul className={styles.list}>
             {this.shortcutsDays.map(d => (
               <li key={d.label}>
-                <a onClick={this.select.bind(this, d)}>
+                <a onClick={this.select.bind(this, d, 2)}>
                   {d.label}
                 </a>
               </li>))
@@ -237,7 +282,7 @@ class DurationPanel extends PureComponent {
           <ul className={styles.list}>
             {this.shortcuts.map(d => (
               <li key={d.label}>
-                <a onClick={this.select.bind(this, d)}>
+                <a onClick={this.select.bind(this, d, 2)}>
                   {d.label}
                 </a>
               </li>))

@@ -139,6 +139,7 @@ class BasicLayout extends React.PureComponent {
     });
   }
   handleDurationSelected = (selectedDuration) => {
+    localStorage.setItem('selectedLabel', JSON.stringify(selectedDuration.label));
     this.props.dispatch({
       type: 'global/changeDuration',
       payload: selectedDuration,
