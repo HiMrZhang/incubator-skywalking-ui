@@ -165,6 +165,9 @@ class DurationPanel extends PureComponent {
               this.select({...selectedTime});
           }
       }
+      if(!label && !timesstep){
+        onSelected(this.shortcuts[0]);
+      }
   }
   disabledDate = (current) => {
     return current && current.valueOf() >= Date.now();
