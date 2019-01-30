@@ -156,14 +156,18 @@ class DurationPanel extends PureComponent {
           }
       }
       if(timesstep){
-          const selectedTime = {};
-          const dateFormat = 'YYYY/MM/DD';
-          if(timesstep){
-              selectedTime.from = () => moment(timesstep.beginTime, dateFormat);
-              selectedTime.to = () => moment(timesstep.endTime, dateFormat);
-              selectedTime.step = timesstep.step;
-              this.select({...selectedTime});
+        const selectedTime = {};
+        const dateFormat = 'YYYY/MM/DD';
+        if(timesstep){
+          selectedTime.step = timesstep.step;
+          if(timesstep.beginTime != '' && timesstep.endTime != ''){
+            selectedTime.from = () => moment(timesstep.beginTime, dateFormat);
+            selectedTime.to = () => moment(timesstep.endTime, dateFormat);
+            this.select({...selectedTime});
+          } else {
+            this.select({...selectedTime, ...this.shortcuts[0]});
           }
+        }
       }
       if(!label && !timesstep){
         onSelected(this.shortcuts[0]);
@@ -181,7 +185,7 @@ class DurationPanel extends PureComponent {
         let beginTime = '', endTime = '', step = '';
         for (const key of Object.keys(fieldsValue)) {
         if (fieldsValue[key]) {
-          if (key === 'range-time-picker') {
+          if (key === 'range-time-picker' && fieldsValue['range-time-picker'].length > 0) {
             beginTime =fieldsValue[key][0].format('YYYY/MM/DD');
             endTime =fieldsValue[key][1].format('YYYY/MM/DD');
             selectedTime.from = () => fieldsValue[key][0];
@@ -229,7 +233,7 @@ class DurationPanel extends PureComponent {
     const { getFieldDecorator } = form;
     const content = (
       <Row type="flex" justify="start">
-        <Col xs={24} sm={24} md={24} lg={15} xl={10}>
+        <Col xs={24} sm={24} md={24} lg={15} xl={13}>
           <Form
             onSubmit={this.handleSubmit}
             hideRequiredMark
@@ -239,7 +243,7 @@ class DurationPanel extends PureComponent {
               label="时间范围"
             >
               {getFieldDecorator('range-time-picker',{
-                  initialValue: timesstep ? [moment(timesstep.beginTime, dateFormat), moment(timesstep.endTime, dateFormat)] : undefined
+                initialValue: timesstep && timesstep.beginTime != '' ? [moment(timesstep.beginTime, dateFormat), moment(timesstep.endTime, dateFormat)] : undefined
               })(
                 <RangePicker showTime disabledDate={this.disabledDate} format="YYYY-MM-DD HH:mm" />
               )}
