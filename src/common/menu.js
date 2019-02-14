@@ -47,8 +47,16 @@ const menuData = [{
   path: 'trace',
 }, {
   name: '服务调用',
-  icon: 'file-text',
+  icon: 'disconnect',
   path: 'serviceReferenceMetric',
+}, {
+  name: '报警联系人',
+  icon: 'contacts',
+  path: 'alarmContact',
+}, {
+  name: '应用管理',
+  icon: 'api',
+  path: 'applicationManager',
 }];
 
 function formatter(data, parentPath = '', parentAuthority) {

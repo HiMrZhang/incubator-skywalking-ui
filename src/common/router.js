@@ -112,6 +112,12 @@ export const getRouterData = (app) => {
     '/monitor/alarm': {
       component: dynamicWrapper(app, ['alarm'], () => import('../routes/Alarm/Alarm')),
     },
+    '/alarmContact': {
+      component: dynamicWrapper(app, ['alarmContact'], () => import('../routes/AlarmContact/AlarmContact')),
+    },
+    '/applicationManager': {
+      component: dynamicWrapper(app, ['applicationManager'], () => import('../routes/ApplicationManager/ApplicationManager')),
+    },
     '/user': {
       component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
     },
