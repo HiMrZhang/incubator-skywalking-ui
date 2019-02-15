@@ -141,7 +141,7 @@ export default class Alarm extends PureComponent {
         >
           <Tabs activeKey={values.alarmType} onChange={this.changeAlarmType}>
             <TabPane tab="应用" key="APPLICATION">{this.renderList(data.applicationAlarmList)}</TabPane>
-            <TabPane tab="主机名" key="SERVER">{this.renderList(data.serverAlarmList)}</TabPane>
+            <TabPane tab="主机" key="SERVER">{this.renderList(data.serverAlarmList)}</TabPane>
             <TabPane tab="服务" key="SERVICE">{this.renderList(data.serviceAlarmList)}</TabPane>
           </Tabs>
         </Card>

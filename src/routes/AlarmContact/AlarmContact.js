@@ -60,9 +60,9 @@ export default class AlarmContact extends PureComponent {
             <Form onSubmit={this.handleSearch} layout="vertical">
                 <Row>
                     <Col span={7}>
-                        <FormItem label={'手机号码'} {...formItemLayout}>
+                        <FormItem label={'姓名'} {...formItemLayout}>
                             {getFieldDecorator('keyword')(
-                                <Input maxLength="15" placeholder="请输入手机号码"/>
+                                <Input maxLength="15" placeholder="请输入姓名"/>
                             )}
                         </FormItem>
                     </Col>
