@@ -169,7 +169,7 @@ export default class ApplicationManager extends PureComponent {
             title: "操作",
             render: (text, record) => (
                 <span>
-                  <a onClick={()=>{this.editorAlarm(record)}}>编辑</a>
+                  <a onClick={()=>{this.editorAlarm(record)}}>设置</a>
                 </span>
             ),
         }];
@@ -307,7 +307,7 @@ export default class ApplicationManager extends PureComponent {
                 </Card>
                 {showEditor ?
                 <Modal
-                    title="应用设置"
+                    title="报警提醒人员"
                     visible={showEditor}
                     width='50%'
                     onCancel={this.handleCancel}
