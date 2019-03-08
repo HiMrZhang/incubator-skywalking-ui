@@ -248,6 +248,29 @@ export default class AlarmContact extends PureComponent {
         });
     };
 
+    validatePhone = (rule, value, callback) => {
+        const regPhone = /^[0-9]{11}$/;
+        if (value && value != ''){
+            if (!regPhone.test(value)) {
+                callback('请输入正确格式的手机号');
+                return;
+            }
+        }
+        callback();
+    };
+
+
+    validateEmail = (rule, value, callback) => {
+        const regEmail = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        if (value && value != ''){
+            if (!regEmail.test(value)) {
+                callback('请输入正确格式的邮箱');
+                return;
+            }
+        }
+        callback();
+    };
+
     handleOk = () => {
         const {form, dispatch, alarmContact: {data: {editorUser}}} = this.props;
         const {isUpdate} = this.state;
@@ -329,7 +352,9 @@ export default class AlarmContact extends PureComponent {
                         </FormItem>
                         <FormItem label={'手机号'} {...formItemLayout}>
                             {getFieldDecorator('phoneNumber', {
-                                rules: [{required: true, message: '请填写手机号'}],
+                                rules: [{required: true, message: '请填写手机号'}, {
+                                    validator: this.validatePhone
+                                }],
                                 initialValue: isUpdate ? editorUser.phoneNumber : undefined
                             })(
                                 <Input maxLength="15" placeholder="请输入手机号"/>
@@ -337,7 +362,9 @@ export default class AlarmContact extends PureComponent {
                         </FormItem>
                         <FormItem label={'邮箱'} {...formItemLayout}>
                             {getFieldDecorator('email', {
-                                rules: [{required: true, message: '请填写邮箱'}],
+                                rules: [{required: true, message: '请填写邮箱'}, {
+                                    validator: this.validateEmail
+                                }],
                                 initialValue: isUpdate ? editorUser.email : undefined
                             })(
                                 <Input maxLength="50" placeholder="请输入邮箱"/>
