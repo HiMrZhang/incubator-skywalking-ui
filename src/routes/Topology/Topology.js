@@ -70,7 +70,7 @@ const layoutButtonStyle = { height: '90%', verticalAlign: 'middle', paddingBotto
 }))
 export default class Topology extends PureComponent {
   static defaultProps = {
-    graphHeight: 600,
+    graphHeight: 1000,
   };
   handleChange = (variables) => {
     this.props.dispatch({
@@ -182,14 +182,14 @@ export default class Topology extends PureComponent {
             {data.appInfo ? (
               <Card
                 title={data.appInfo.name}
-                bodyStyle={{ height: 568 }}
+                bodyStyle={{ height: 1068 }}
                 actions={this.renderActions()}
               >
                 <ApplicationLitePanel appInfo={data.appInfo} />
               </Card>
             )
             : (
-              <Card title="概观" style={{ height: 672 }}>
+              <Card title="概观" style={{ height: 1074 }}>
                 <Select
                   mode="tags"
                   style={{ width: '100%', marginBottom: 20 }}
